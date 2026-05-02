@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Additional Assignments — Zilin Yuan</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .assignment-block {
+      background: #fff;
+      border: 1px solid #e8e6e1;
+      border-radius: 14px;
+      margin-bottom: 2rem;
+      overflow: hidden;
+      transition: 0.3s ease;
+    }
+
+    .assignment-block:hover {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+
+    .assignment-header {
+      padding: 1.5rem 2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      user-select: none;
+      border-bottom: 1px solid transparent;
+      transition: 0.3s ease;
+    }
+
+    .assignment-block.open .assignment-header {
+      border-bottom: 1px solid #e8e6e1;
+    }
+
+    .assignment-header-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .assignment-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .assignment-header h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #1a1a2e;
+      line-height: 1.35;
+    }
+
+    .assignment-header .toggle-icon {
+      width: 20px;
+      height: 20px;
+      color: #9b9bae;
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .assignment-block.open .toggle-icon {
+      transform: rotate(180deg);
+    }
+
+    .assignment-body {
+      display: none;
+      padding: 1.5rem 2rem 2rem;
+    }
+
+    .assignment-block.open .assignment-body {
+      display: block;
+    }
+
+    .assignment-body p {
+      font-size: 0.95rem;
+      color: #555568;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .assignment-body h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #1a1a2e;
+      margin: 1.5rem 0 0.6rem;
+    }
+
+    .assignment-body h4:first-child {
+      margin-top: 0;
+    }
+
+    .assignment-body ul, .assignment-body ol {
+      padding-left: 1.3rem;
+      margin-bottom: 1rem;
+    }
+
+    .assignment-body li {
+      font-size: 0.92rem;
+      color: #555568;
+      line-height: 1.7;
+      margin-bottom: 0.3rem;
+    }
+
+    .assignment-body .info-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+    }
+
+    .info-table th {
+      text-align: left;
+      padding: 0.7rem 1rem;
+      background: #f4f2ee;
+      color: #1a1a2e;
+      font-weight: 600;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid #e8e6e1;
+    }
+
+    .info-table td {
+      padding: 0.8rem 1rem;
+      color: #555568;
+      line-height: 1.65;
+      border-bottom: 1px solid #f0efee;
+      vertical-align: top;
+    }
+
+    .info-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .info-table td:first-child {
+      font-weight: 500;
+      color: #1a1a2e;
+      white-space: nowrap;
+      width: 180px;
+    }
+
+    .dl-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: #5b4dce;
+      text-decoration: none;
+      transition: 0.3s ease;
+    }
+
+    .dl-link:hover { color: #e8655a; }
+
+    .dl-link svg { width: 14px; height: 14px; }
+
+    .quote-block {
+      border-left: 3px solid #5b4dce;
+      padding: 0.8rem 1.2rem;
+      margin: 1rem 0;
+      background: rgba(91, 77, 206, 0.03);
+      border-radius: 0 8px 8px 0;
+      font-size: 0.9rem;
+      color: #555568;
+      line-height: 1.7;
+    }
+
+    .section-label-inline {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      border-radius: 100px;
+      display: inline-block;
+      margin-bottom: 0.3rem;
+    }
+
+    @media (max-width: 768px) {
+      .info-table td:first-child {
+        white-space: normal;
+        width: auto;
+      }
+      .assignment-header { padding: 1.2rem 1.5rem; }
+      .assignment-body { padding: 1.2rem 1.5rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="../index.html" class="logo">Zilin Yuan</a>
+      <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../projects.html">Projects</a></li>
+        <li><a href="revision.html">Revision</a></li>
+        <li><a href="assignments.html" class="active">Assignments</a></li>
+        <li><a href="../about.html">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="article-page">
+    <div class="article-inner" style="max-width: 880px;">
+      <a href="../projects.html" class="article-back">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" /></svg>
+        Back to Projects
+      </a>
+
+      <div class="article-meta">
+        <span class="tag" style="color: #d4943a; background: rgba(212,148,58,0.07);">Course Work</span>
+        <h1>Additional Assignments</h1>
+        <p class="subtitle">Selected assignments and exercises from EAP II that supported the development of the three major writing projects. Click each to expand.</p>
+      </div>
+
+      <div class="article-divider"></div>
+
+      <!-- 1. Nostalgia Time Capsule -->
+      <div class="assignment-block open">
+        <div class="assignment-header" onclick="this.parentElement.classList.toggle('open')">
+          <div class="assignment-header-left">
+            <div class="assignment-icon" style="background: rgba(91,77,206,0.07); color: #5b4dce;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
+            </div>
+            <div>
+              <span class="section-label-inline" style="color: #5b4dce; background: rgba(91,77,206,0.06);">Project 1 — Supporting Work</span>
+              <h3>Nostalgia Time Capsule</h3>
+            </div>
+          </div>
+          <svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
+        </div>
+        <div class="assignment-body">
+          <p>Creating my nostalgia time capsule helped me better understand my strongest feelings of nostalgia. Looking at photos of my favorite amusement park from childhood immediately brought back memories of a simpler, happier time. That place represents pure childhood memories and a carefree sense of happiness, which I deeply miss.</p>
+          <p>I also feel a strong fondness for my high school friends. The photo of us together reminds me of shared laughter and a feeling of belonging. Even now, thinking about those friendships brings warmth and emotional comfort. Traveling with friends in Nanjing, China was another meaningful experience that I often reflect on. Those trips strengthened our bond and created memories that still evoke nostalgia today.</p>
+          <p>My hometown, Wuhan, holds a special place in my heart. The sunset by the river reminds me of my roots. Riding a bicycle to school every day was an ordinary routine. These small moments now feel especially precious.</p>
+          <p>Finally, images of Chinese New Year's Eve dinner with my family represent collective nostalgia. Gathering together, sharing food, and celebrating traditions gave me a strong sense of connection. The rainbow I saw in high school still makes me feel optimistic. It reminds me that nostalgia is also about hope for the future. This time capsule shows how revisiting these memories restores my enthusiasm and optimism as I move forward in life.</p>
+          <a href="../Document/Nostalgia Time Capsule - Zilin (1).docx" class="dl-link">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
+            Download original .docx
+          </a>
+        </div>
+      </div>
+
+      <!-- 2. Anatomy of an Introduction -->
+      <div class="assignment-block">
+        <div class="assignment-header" onclick="this.parentElement.classList.toggle('open')">
+          <div class="assignment-header-left">
+            <div class="assignment-icon" style="background: rgba(232,101,90,0.07); color: #e8655a;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
+            </div>
+            <div>
+              <span class="section-label-inline" style="color: #e8655a; background: rgba(232,101,90,0.06);">Project 2 — Supporting Work</span>
+              <h3>Anatomy of an Introduction</h3>
+            </div>
+          </div>
+          <svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
+        </div>
+        <div class="assignment-body">
+          <p>An exercise dissecting the anatomy of an introductory paragraph for a two-author analytical essay. Using a provided example, I organized my own introduction for the Drawing Connections project following four structural steps:</p>
+          <table class="info-table">
+            <tr>
+              <td>1. Attention Grabber</td>
+              <td>In recent years, Disney's live-action remakes have consistently dominated the global box office, but they have also consistently sparked heated debates among audiences and critics.</td>
+            </tr>
+            <tr>
+              <td>2. Introduce Texts</td>
+              <td>The two main texts analyzed are Richard Newby's article "Lion King, Originality and the Backlash Against Remakes" and Nerdstalgic's YouTube video essay "The Problem With Disney's Movies In One Word."</td>
+            </tr>
+            <tr>
+              <td>3. Lead to Main Idea</td>
+              <td>An analysis of these two perspectives reveals that the intense backlash against Disney's remakes stems from far more than a mere lack of originality.</td>
+            </tr>
+            <tr>
+              <td>4. Thesis Statement</td>
+              <td>The backlash represents a complex, multifaceted reaction — a resistance to careless creative execution, a warning against the toxic double-edged sword of nostalgia, and a growing concern about corporate monopolization of shared cultural narratives.</td>
+            </tr>
+          </table>
+          <a href="../Document/Anatomy of an Introduction 2 Authors with Example (2).docx" class="dl-link">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
+            Download original .docx
+          </a>
+        </div>
+      </div>
+
+      <!-- 3. Analytical Essay Outline -->
+      <div class="assignment-block">
+        <div class="assignment-header" onclick="this.parentElement.classList.toggle('open')">
+          <div class="assignment-header-left">
+            <div class="assignment-icon" style="background: rgba(46,168,158,0.07); color: #2ea89e;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12" /></svg>
+            </div>
+            <div>
+              <span class="section-label-inline" style="color: #2ea89e; background: rgba(46,168,158,0.06);">Project 2 — Supporting Work</span>
+              <h3>Analytical Essay Outline</h3>
+            </div>
+          </div>
+          <svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
+        </div>
+        <div class="assignment-body">
+          <p>A structured outline building the skeleton of the Drawing Connections Essay — organizing thesis, topic sentences, evidence, and analysis for each body paragraph.</p>
+
+          <h4>Body Paragraph 1 — Originality vs. Adaptation</h4>
+          <p><strong>Topic Sentence:</strong> Many critics complain that remaking films like <em>The Lion King</em> or <em>Aladdin</em> proves Hollywood has run out of new ideas. However, adaptation is a longstanding human storytelling tradition, and Disney's foundational success was built entirely on remaking public domain fairy tales.</p>
+          <div class="quote-block"><strong>Newby:</strong> "The vast majority of Disney's animated classics are already retellings. The studio's cinematic success that began with <em>Snow White and the Seven Dwarves</em> (1937) was founded on the idea of remaking."</div>
+          <div class="quote-block"><strong>Nerdstalgic:</strong> Intertextual moments "shouldn't be relied on to make up for the lack of storytelling creativity. It's almost as if Disney believes we aren't smart enough or capable enough of understanding a new story" (5:55–6:05).</div>
+          <p><strong>Connection:</strong> While Newby points out that retelling stories is a historical norm, Nerdstalgic argues that Disney's current method leans too heavily on mere visual recognition rather than actual creative effort. Together, they suggest audiences reject the lazy execution, not the concept of remakes itself.</p>
+
+          <h4>Body Paragraph 2 — The Double-Edged Sword of Nostalgia</h4>
+          <p><strong>Topic Sentence:</strong> Audiences are drawn to remakes out of a deep desire to revisit childhood favorites. Yet any deviation from the original memory often sparks immediate and intense outrage.</p>
+          <div class="quote-block"><strong>Newby:</strong> "There is unquestionably an element of nostalgia that drives audiences to theaters… and that element is largely the reason behind why casting decisions so often turn ugly."</div>
+          <div class="quote-block"><strong>Nerdstalgic:</strong> "We begin to seek out the nostalgia and resent everything that isn't" (4:19–4:24).</div>
+          <p><strong>Connection:</strong> Both authors agree that nostalgia is a double-edged sword: it guarantees massive ticket sales while simultaneously breeding a rigid, toxic fan environment that stifles progressive artistic choices.</p>
+
+          <h4>Body Paragraph 3 — Corporate Monopoly of Cultural Narratives</h4>
+          <p><strong>Topic Sentence:</strong> Disney's specific versions have become the most recognized worldwide. Critics worry a single corporation is erasing the broader history of global stories.</p>
+          <div class="quote-block"><strong>Newby:</strong> "These remakes are now the dominant tellings of these stories, while the knowledge that they are only a small part of history has become lost on too many moviegoers."</div>
+          <div class="quote-block"><strong>Nerdstalgic:</strong> "We've grown up. We know these moments too well to be fooled by the moment they're recreating… Maybe it's time Disney grows with us" (8:31–8:44).</div>
+          <p><strong>Connection:</strong> Newby warns Disney's monopolistic approach threatens to rewrite storytelling history. Nerdstalgic builds on this by arguing the dominance relies on "fooling" an audience that has already outgrown these mechanical recreations.</p>
+
+          <a href="../Document/Analytical Essay Outlining Template EAP II-2 (2).docx" class="dl-link">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
+            Download original .docx
+          </a>
+        </div>
+      </div>
+
+      <!-- 4. Focus Text Source Assessment -->
+      <div class="assignment-block">
+        <div class="assignment-header" onclick="this.parentElement.classList.toggle('open')">
+          <div class="assignment-header-left">
+            <div class="assignment-icon" style="background: rgba(212,148,58,0.07); color: #d4943a;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" /></svg>
+            </div>
+            <div>
+              <span class="section-label-inline" style="color: #d4943a; background: rgba(212,148,58,0.06);">Project 3 — Supporting Work</span>
+              <h3>Focus Text Source Assessment</h3>
+            </div>
+          </div>
+          <svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
+        </div>
+        <div class="assignment-body">
+          <p>An initial source assessment developing research skills around the course theme of escapism.</p>
+          <table class="info-table">
+            <tr>
+              <td>Title &amp; Author</td>
+              <td>"Escapism: Current Studies and Research Prospects in Contemporary Psychology" by Oxana Igorevna Olkina</td>
+            </tr>
+            <tr>
+              <td>Publication</td>
+              <td><em>Austrian Journal of Humanities and Social Sciences</em> — publishes academic articles across humanities and social science disciplines.</td>
+            </tr>
+            <tr>
+              <td>Discipline</td>
+              <td>Psychology, specifically intersecting with social sciences and media studies.</td>
+            </tr>
+            <tr>
+              <td>Genre</td>
+              <td>Academic literature review and research article. Uses a structured format with citations and theoretical frameworks.</td>
+            </tr>
+          </table>
+          <h4>Summary of Main Ideas</h4>
+          <p>Escapism is a prevalent issue deeply connected to modern media and emerging technologies. It's not just a negative trait like internet addiction — it also has a potentially positive function for self-regulation and coping. The text explores how escapism manifests in gaming, virtual reality, and other media.</p>
+          <h4>Reflection</h4>
+          <p>I learned that escapism isn't just a negative trait; it also has a potentially positive function for self-regulation and coping. This broadened my understanding and helped me see how different disciplines frame the concept, which will influence how I approach my own research on gaming engagement.</p>
+          <a href="../Document/Focus Text Source.docx" class="dl-link">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
+            Download original .docx
+          </a>
+        </div>
+      </div>
+
+      <!-- 5. Research & Selection of Primary Text -->
+      <div class="assignment-block">
+        <div class="assignment-header" onclick="this.parentElement.classList.toggle('open')">
+          <div class="assignment-header-left">
+            <div class="assignment-icon" style="background: rgba(91,77,206,0.07); color: #5b4dce;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" /></svg>
+            </div>
+            <div>
+              <span class="section-label-inline" style="color: #5b4dce; background: rgba(91,77,206,0.06);">Project 3 — Supporting Work</span>
+              <h3>Research &amp; Selection of Primary Text</h3>
+            </div>
+          </div>
+          <svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
+        </div>
+        <div class="assignment-body">
+          <p>A research log documenting the process of finding and selecting a primary academic text for the Source Assessment project.</p>
+          <h4>Research Proposal</h4>
+          <p>Researching escapism within the field of Digital Media and Communication — specifically how game mechanics and software design facilitate "active" escapism and its impact on user self-perception, including the boundary between healthy immersion and addiction.</p>
+          <h4>Search Keywords</h4>
+          <ul>
+            <li>Active escapism</li>
+            <li>Human-Computer Interaction (HCI)</li>
+            <li>Game mechanics / Game design</li>
+            <li>Healthy immersion</li>
+            <li>Video game addiction</li>
+            <li>Player self-regulation</li>
+            <li>Simulated worlds</li>
+          </ul>
+          <h4>Sources Evaluated</h4>
+          <table class="info-table">
+            <tr>
+              <td>Source 1</td>
+              <td><strong>"Exploring Future Directions for Healthy Escapism and Self-Regulation in Games"</strong> — Explores how system design can interfere with or facilitate a player's ability to regulate their gaming behavior.</td>
+            </tr>
+            <tr>
+              <td>Source 2</td>
+              <td><strong>"Fanboys, competers, escapists and time-killers: a typology based on gamers' motivations"</strong> — Categorizes gamers based on motivations, identifying an "escapist gamer" cluster who utilize games for freedom.</td>
+            </tr>
+            <tr>
+              <td>Source 3 ✓</td>
+              <td><strong>"Continuance Intention and Addiction: Analyzing the Role of Escapism in Balanced Gaming Engagement"</strong> — Differentiates between healthy continued engagement and game addiction, highlighting escapism as a strong predictor of addiction.</td>
+            </tr>
+          </table>
+          <h4>Why Source 3 Was Chosen</h4>
+          <p>This paper directly addresses the core conflict: the developer's dilemma of balancing sustained player engagement with the ethical risks of game addiction. Unlike the other sources, it uses quantitative data to suggest actionable, responsible game design strategies — making it the perfect foundation for a Computer Science and HCI-focused research project.</p>
+          <a href="../Document/Step 2- Research & Selection of Primary Text (Your Research Log) (1).docx" class="dl-link">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
+            Download original .docx
+          </a>
+        </div>
+      </div>
+
+      <!-- 6. Project 3 Step 3 -->
+      <div class="assignment-block">
+        <div class="assignment-header" onclick="this.parentElement.classList.toggle('open')">
+          <div class="assignment-header-left">
+            <div class="assignment-icon" style="background: rgba(232,101,90,0.07); color: #e8655a;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25Z" /></svg>
+            </div>
+            <div>
+              <span class="section-label-inline" style="color: #e8655a; background: rgba(232,101,90,0.06);">Project 3 — Supporting Work</span>
+              <h3>Primary Text Source Assessment Chart</h3>
+            </div>
+          </div>
+          <svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
+        </div>
+        <div class="assignment-body">
+          <p>The detailed source assessment chart for the primary text used in Writing Project #3.</p>
+          <table class="info-table">
+            <tr>
+              <td>Title &amp; Author</td>
+              <td>"Continuance Intention and Addiction: Analyzing the Role of Escapism in Balanced Gaming Engagement" — Mengyuan Li, Wendy Wan Yee Hui, and Torsten Reiners</td>
+            </tr>
+            <tr>
+              <td>Publication</td>
+              <td>2025 IEEE International Conference on Service Operations and Logistics, and Informatics (SOLI). Peer-reviewed academic conference paper.</td>
+            </tr>
+            <tr>
+              <td>Discipline</td>
+              <td>Information Systems, Business Management, and Cyberpsychology. Explores the tension between continuance intention and game addiction.</td>
+            </tr>
+            <tr>
+              <td>Genre</td>
+              <td>Academic Conference Paper / Empirical Research Study. Uses structured format with statistical modeling and visual diagrams.</td>
+            </tr>
+            <tr>
+              <td>Organization</td>
+              <td>Establishes a real-world business and ethical problem, reviews existing theories (TAM, SET), details a survey of 123 Pokémon Go players, presents findings, and concludes with practical implications.</td>
+            </tr>
+          </table>
+          <h4>Main Ideas</h4>
+          <ul>
+            <li>Enjoyment drives both positive and negative outcomes — it's a strong predictor of both continuance intention and game addiction.</li>
+            <li>Escapism is solely linked to addiction — it significantly predicts addiction but does not predict healthy engagement.</li>
+            <li>Ethical game design is possible by promoting enjoyment while reducing escapism-driven engagement.</li>
+          </ul>
+          <h4>Reflection</h4>
+          <p>I learned the clear distinction between enjoyment and escapism in gaming. While both keep players playing, escapism is the key factor that pushes behavior from healthy engagement into addiction. In the discipline of Information Systems, business goals must often be carefully balanced against human psychology and ethical design.</p>
+          <a href="../Document/Project 3 Step 3.docx" class="dl-link">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
+            Download original .docx
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <ul class="footer-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../projects.html">Projects</a></li>
+        <li><a href="revision.html">Revision</a></li>
+        <li><a href="assignments.html">Assignments</a></li>
+        <li><a href="../about.html">About</a></li>
+      </ul>
+      <p>&copy; 2026 Zilin Yuan. EAP II Writing Portfolio.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

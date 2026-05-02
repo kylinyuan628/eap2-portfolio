@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Source Assessment — Zilin Yuan</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .slideshow {
+      max-width: 960px;
+      margin: 2rem auto 0;
+      position: relative;
+    }
+
+    .slideshow-viewport {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #e8e6e1;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+      background: #fff;
+    }
+
+    .slideshow-viewport img {
+      width: 100%;
+      display: none;
+      aspect-ratio: 2160/1217;
+      object-fit: contain;
+      background: #fff;
+    }
+
+    .slideshow-viewport img.active {
+      display: block;
+    }
+
+    .slide-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .slide-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid #e8e6e1;
+      background: #fff;
+      color: #1a1a2e;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .slide-btn:hover {
+      background: rgba(91, 77, 206, 0.06);
+      border-color: rgba(91, 77, 206, 0.3);
+      transform: scale(1.05);
+    }
+
+    .slide-btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .slide-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .slide-counter {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #9b9bae;
+      letter-spacing: 0.05em;
+      min-width: 70px;
+      text-align: center;
+    }
+
+    .slide-counter span {
+      color: #5b4dce;
+    }
+
+    .slide-dots {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .slide-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(91, 77, 206, 0.12);
+      border: none;
+      cursor: pointer;
+      transition: 0.3s ease;
+      padding: 0;
+    }
+
+    .slide-dot.active {
+      background: #5b4dce;
+      box-shadow: 0 0 8px rgba(91, 77, 206, 0.3);
+      transform: scale(1.2);
+    }
+
+    .slide-dot:hover:not(.active) {
+      background: rgba(91, 77, 206, 0.3);
+    }
+
+    .fullscreen-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      border: none;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(8px);
+      color: #fff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.3s ease;
+      z-index: 2;
+      opacity: 0;
+    }
+
+    .slideshow-viewport:hover .fullscreen-btn {
+      opacity: 1;
+    }
+
+    .fullscreen-btn:hover {
+      background: rgba(91, 77, 206, 0.6);
+    }
+
+    .fullscreen-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* Keyboard hint */
+    .slide-hint {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.75rem;
+      color: #9b9bae;
+      letter-spacing: 0.03em;
+    }
+
+    .slide-hint kbd {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid #e8e6e1;
+      background: #f4f2ee;
+      font-family: inherit;
+      font-size: 0.72rem;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="../index.html" class="logo">Zilin Yuan</a>
+      <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../projects.html" class="active">Projects</a></li>
+        <li><a href="revision.html">Revision</a></li>
+        <li><a href="assignments.html">Assignments</a></li>
+        <li><a href="../about.html">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="article-page">
+    <div class="article-inner" style="max-width: 1000px;">
+      <a href="../projects.html" class="article-back">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" /></svg>
+        Back to Projects
+      </a>
+
+      <div class="article-meta">
+        <span class="tag">Project 3 — Source Assessment Presentation</span>
+        <h1>Continuance Intention and Addiction</h1>
+        <p class="subtitle">Analyzing the Role of Escapism in Balanced Gaming Engagement — A primary text source assessment of Li, Hui &amp; Reiners (2025).</p>
+      </div>
+
+      <div class="article-divider"></div>
+
+      <div class="slideshow">
+        <div class="slideshow-viewport" id="viewport">
+          <img src="../assets/slides/slide-01.png" alt="Slide 1" class="active">
+          <img src="../assets/slides/slide-02.png" alt="Slide 2">
+          <img src="../assets/slides/slide-03.png" alt="Slide 3">
+          <img src="../assets/slides/slide-04.png" alt="Slide 4">
+          <img src="../assets/slides/slide-05.png" alt="Slide 5">
+          <img src="../assets/slides/slide-06.png" alt="Slide 6">
+          <img src="../assets/slides/slide-07.png" alt="Slide 7">
+          <img src="../assets/slides/slide-08.png" alt="Slide 8">
+          <img src="../assets/slides/slide-09.png" alt="Slide 9">
+          <img src="../assets/slides/slide-10.png" alt="Slide 10">
+          <img src="../assets/slides/slide-11.png" alt="Slide 11">
+          <img src="../assets/slides/slide-12.png" alt="Slide 12">
+          <img src="../assets/slides/slide-13.png" alt="Slide 13">
+          <button class="fullscreen-btn" onclick="toggleFullscreen()" title="Fullscreen">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" /></svg>
+          </button>
+        </div>
+
+        <div class="slide-controls">
+          <button class="slide-btn" id="prevBtn" onclick="changeSlide(-1)" disabled>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" /></svg>
+          </button>
+          <span class="slide-counter"><span id="currentNum">1</span> / 13</span>
+          <button class="slide-btn" id="nextBtn" onclick="changeSlide(1)">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+          </button>
+        </div>
+
+        <div class="slide-dots" id="dots"></div>
+
+        <p class="slide-hint">Use <kbd>&larr;</kbd> <kbd>&rarr;</kbd> arrow keys to navigate</p>
+      </div>
+
+      <div class="article-divider" style="margin: 3rem 0;"></div>
+
+      <a href="../Source_Assessment_Presentation(3) (1).pptx" class="download-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
+        Download Original (.pptx)
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <ul class="footer-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../projects.html">Projects</a></li>
+        <li><a href="revision.html">Revision</a></li>
+        <li><a href="assignments.html">Assignments</a></li>
+        <li><a href="../about.html">About</a></li>
+      </ul>
+      <p>&copy; 2026 Zilin Yuan. EAP II Writing Portfolio.</p>
+    </div>
+  </footer>
+
+  <script>
+    const slides = document.querySelectorAll('.slideshow-viewport img');
+    const totalSlides = slides.length;
+    let current = 0;
+
+    // Create dots
+    const dotsContainer = document.getElementById('dots');
+    for (let i = 0; i < totalSlides; i++) {
+      const dot = document.createElement('button');
+      dot.className = 'slide-dot' + (i === 0 ? ' active' : '');
+      dot.onclick = () => goToSlide(i);
+      dotsContainer.appendChild(dot);
+    }
+
+    function goToSlide(index) {
+      slides[current].classList.remove('active');
+      dotsContainer.children[current].classList.remove('active');
+      current = index;
+      slides[current].classList.add('active');
+      dotsContainer.children[current].classList.add('active');
+      document.getElementById('currentNum').textContent = current + 1;
+      document.getElementById('prevBtn').disabled = current === 0;
+      document.getElementById('nextBtn').disabled = current === totalSlides - 1;
+    }
+
+    function changeSlide(dir) {
+      const next = current + dir;
+      if (next >= 0 && next < totalSlides) goToSlide(next);
+    }
+
+    function toggleFullscreen() {
+      const vp = document.getElementById('viewport');
+      if (!document.fullscreenElement) {
+        vp.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') changeSlide(1);
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') changeSlide(-1);
+    });
+  </script>
+
+</body>
+</html>
